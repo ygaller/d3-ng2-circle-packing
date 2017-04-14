@@ -1,4 +1,6 @@
-# Ng2D3CirclePacking
+# D3Ng2CirclePacking
+
+A port of [D3 Circle Packing](https://bl.ocks.org/mbostock/ca5b03a33affa4160321) to Angular 2 based on https://github.com/tomwanzek/d3-ng2-demo and https://github.com/tomwanzek/d3-ng2-service.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 

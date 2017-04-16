@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {D3CirclePackingModule} from "./d3-circle-packing/d3-circle-packing.module";
 import {D3Service} from "d3-ng2-service";
+import {D3DataModule} from "./d3-data/d3-data.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {D3Service} from "d3-ng2-service";
     BrowserModule,
     FormsModule,
     HttpModule,
+    D3DataModule,
     D3CirclePackingModule
   ],
   providers: [
@@ -25,4 +27,8 @@ import {D3Service} from "d3-ng2-service";
     CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor() {
+  }
+}

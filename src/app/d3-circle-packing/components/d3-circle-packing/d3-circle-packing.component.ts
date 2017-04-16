@@ -1,8 +1,7 @@
-import {Component, OnInit, ElementRef, OnDestroy} from '@angular/core';
+import {Component, OnInit, ElementRef, OnDestroy} from "@angular/core";
 import {D3Service, D3, Selection} from "d3-ng2-service";
-import {Datum} from "geodesy";
-import {HierarchyPointNode, HierarchyNode, PackCircle} from "d3-hierarchy";
-import {Http, Response} from "@angular/http";
+import {HierarchyPointNode} from "d3-hierarchy";
+import {FlareCsvService} from "../../../d3-data/flare-csv.service";
 
 @Component({
   selector: 'd3-circle-packing',
@@ -15,7 +14,7 @@ export class D3CirclePackingComponent implements OnInit, OnDestroy {
   private parentNativeElement: any;
   private d3Svg: Selection<SVGSVGElement, any, null, undefined>;
 
-  constructor(private http: Http, element: ElementRef, d3Service: D3Service) {
+  constructor(private flareData: FlareCsvService, element: ElementRef, d3Service: D3Service) {
     this.d3 = d3Service.getD3();
     this.parentNativeElement = element.nativeElement;
   }
@@ -56,15 +55,8 @@ export class D3CirclePackingComponent implements OnInit, OnDestroy {
       .size([svgWidth - 2, svgHeight - 2])
       .padding(3);
 
-    this.http.get("./assets/flare.csv").subscribe(
-      res => processData(res),
-      err => {
-        throw err;
-      }
-    );
-
-    const processData = function (res: Response) {
-      const data = d3.csvParse(res['_body']);
+    const processData = function (rawData: string) {
+      const data = d3.csvParse(rawData);
       const root = stratify(data)
         .sum((d: HierarchyPointNode<any>) => d.value)
         .sort((a, b) => b.value - a.value);
@@ -107,5 +99,7 @@ export class D3CirclePackingComponent implements OnInit, OnDestroy {
       node.append("title")
         .text(d => d.id + "\n" + format(d.value));
     };
+
+    this.flareData.getData().subscribe(data => processData(data));
   }
 }

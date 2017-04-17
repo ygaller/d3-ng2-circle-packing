@@ -6,7 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {D3CirclePackingModule} from "./d3-circle-packing/d3-circle-packing.module";
 import {D3Service} from "d3-ng2-service";
-import {D3DataModule} from "./d3-data/d3-data.module";
+import {D3HierarchicalDataModule} from "./d3-hierarchical-data/d3-hierarchical-data.module";
+import {FlareCsvService} from "./d3-hierarchical-data/flare-csv.service";
+import {FlareJsonService} from "./d3-hierarchical-data/flare-json.service";
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import {D3DataModule} from "./d3-data/d3-data.module";
     BrowserModule,
     FormsModule,
     HttpModule,
-    D3DataModule,
+    D3HierarchicalDataModule,
     D3CirclePackingModule
   ],
   providers: [
-    D3Service
+    D3Service,
+    FlareCsvService,
+    FlareJsonService,
   ],
   bootstrap: [AppComponent],
   schemas: [

@@ -1,7 +1,7 @@
-import {NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
+import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {D3CirclePackingComponent} from "./components/d3-circle-packing/d3-circle-packing.component";
-import {FlareCsvService} from "../d3-data/flare-csv.service";
+import {FlareCsvService} from "../d3-hierarchical-data/flare-csv.service";
 
 @NgModule({
   imports: [

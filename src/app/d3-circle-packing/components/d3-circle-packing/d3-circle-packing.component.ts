@@ -1,12 +1,12 @@
-import {Component, OnInit, ElementRef, OnDestroy} from "@angular/core";
+import {Component, OnInit, ElementRef, OnDestroy, Input} from "@angular/core";
 import {D3Service, D3, Selection} from "d3-ng2-service";
-import {HierarchyPointNode} from "d3-hierarchy";
-import {FlareCsvService} from "../../../d3-data/flare-csv.service";
+import {HierarchyPointNode, HierarchyNode} from "d3-hierarchy";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'd3-circle-packing',
   templateUrl: './d3-circle-packing.component.html',
-  styleUrls: ['./d3-circle-packing.component.css']
+  styleUrls: ['./d3-circle-packing.component.css'],
 })
 export class D3CirclePackingComponent implements OnInit, OnDestroy {
 
@@ -14,7 +14,9 @@ export class D3CirclePackingComponent implements OnInit, OnDestroy {
   private parentNativeElement: any;
   private d3Svg: Selection<SVGSVGElement, any, null, undefined>;
 
-  constructor(private flareData: FlareCsvService, element: ElementRef, d3Service: D3Service) {
+  @Input() root: Observable<HierarchyNode<any>>;
+
+  constructor(element: ElementRef, d3Service: D3Service) {
     this.d3 = d3Service.getD3();
     this.parentNativeElement = element.nativeElement;
   }
@@ -48,20 +50,17 @@ export class D3CirclePackingComponent implements OnInit, OnDestroy {
 
     const color: (number) => string = d3.scaleSequential(d3.interpolateMagma).domain([-4, 4]);
 
-    const stratify = d3.stratify()
-      .parentId((d: HierarchyPointNode<any>) => d.id.substring(0, d.id.lastIndexOf(".")));
-
     const pack = d3.pack()
       .size([svgWidth - 2, svgHeight - 2])
       .padding(3);
 
-    const processData = function (rawData: string) {
-      const data = d3.csvParse(rawData);
-      const root = stratify(data)
-        .sum((d: HierarchyPointNode<any>) => d.value)
-        .sort((a, b) => b.value - a.value);
+    const processData = function (root: HierarchyNode<any>) {
+      console.log('root');
+      console.log(root);
 
       pack(root);
+      console.log('after pack');
+      console.log(root);
 
       const node = d3Svg.select<SVGGElement>("g")
         .selectAll("g")
@@ -76,30 +75,35 @@ export class D3CirclePackingComponent implements OnInit, OnDestroy {
         .on("mouseout", hovered(false));
 
       node.append<SVGCircleElement>("circle")
-        .attr("id", d => "node-" + d.id)
+        .attr("id", d => {
+          return "node-" + d.data.name;
+        })
+        // .attr("id", d => "node-" + d.id)
         .attr("r", d => (<any>d).r)
         .style("fill", d => color(d.depth));
 
       const leaf = node.filter(d => !d.children);
 
       leaf.append("clipPath")
-        .attr("id", d => "clip-" + d.id)
+        .attr("id", d => "clip-" + d.data.name )
         .append("use")
-        .attr("xlink:href", d => "#node-" + d.id + "");
+        .attr("xlink:href", d => "#node-" + d.data.name + "");
 
       leaf.append("text")
-        .attr("clip-path", d => "url(#clip-" + d.id + ")")
+        .attr("clip-path", d => "url(#clip-" + d.data.name + ")")
         .selectAll("tspan")
-        .data(d => d.id.substring(d.id.lastIndexOf(".") + 1).split(/(?=[A-Z][^A-Z])/g))
+        .data((d: HierarchyNode<any>) => {
+          return d.data.name.substring(d.data.name.lastIndexOf(".") + 1).split(/(?=[A-Z][^A-Z])/g);
+        })
         .enter().append("tspan")
         .attr("x", 0)
         .attr("y", (d, i, nodes) => 13 + (i - nodes.length / 2 - 0.5) * 10)
-        .text(d => d);
+        .text(d => '' + d);
 
       node.append("title")
-        .text(d => d.id + "\n" + format(d.value));
+        .text(d => d.data.name + "\n" + format(d.value));
     };
 
-    this.flareData.getData().subscribe(data => processData(data));
+    this.root.subscribe(root => processData(root));
   }
 }

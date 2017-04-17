@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {FlareCsvService} from "./d3-hierarchical-data/flare-csv.service";
+import {FlareJsonService} from "./d3-hierarchical-data/flare-json.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  constructor(private flareCsvService: FlareCsvService, private flareJsonService: FlareJsonService) {
+  }
 }

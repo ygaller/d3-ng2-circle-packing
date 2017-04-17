@@ -1,6 +1,12 @@
 # D3Ng2CirclePacking
 
-A port of [D3 Circle Packing](https://bl.ocks.org/mbostock/ca5b03a33affa4160321) to Angular 2 based on https://github.com/tomwanzek/d3-ng2-demo and https://github.com/tomwanzek/d3-ng2-service.
+A port of [D3 Circle Packing](https://bl.ocks.org/mbostock/ca5b03a33affa4160321) 
+to Angular 2 based on https://github.com/tomwanzek/d3-ng2-demo 
+and https://github.com/tomwanzek/d3-ng2-service.
+
+The D3 circle packing component is given a root node as input, in the [hierarchy](https://github.com/d3/d3-hierarchy/blob/master/README.md#hierarchy) format. 
+
+The data itself is provided by a separate service. In this project there are 2 examples: In csv format and in json format (json taken from [https://bl.ocks.org/mbostock/7607535](https://bl.ocks.org/mbostock/7607535)).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 

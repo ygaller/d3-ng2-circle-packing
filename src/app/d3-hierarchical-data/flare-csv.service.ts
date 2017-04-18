@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map';
@@ -13,15 +13,15 @@ export class FlareCsvService implements HierarchicalData {
   private d3: D3;
   private stratify;
 
+  public root: Observable<HierarchyNode<any>>;
+
   constructor(private http: Http, d3Service: D3Service) {
     this.d3 = d3Service.getD3();
     this.stratify = this.d3.stratify()
       .id((d: HierarchyPointNode<any>) => (<any>d).name)
       .parentId((d: HierarchyPointNode<any>) => (<any>d).name.substring(0, (<any>d).name.lastIndexOf(".")));
-  }
 
-  getRoot(): Observable<HierarchyNode<any>> {
-    return this.http.get(this.csvUrl).map(res => {
+    this.root = this.http.get(this.csvUrl).map(res => {
       const rawData = res['_body'] || '';
       const data = this.d3.csvParse(rawData);
 
@@ -29,6 +29,5 @@ export class FlareCsvService implements HierarchicalData {
         .sum((d: HierarchyPointNode<any>) => d.value)
         .sort((a, b) => b.value - a.value);
     });
-
   }
 }

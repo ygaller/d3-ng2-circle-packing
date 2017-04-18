@@ -4,11 +4,11 @@ import {HierarchyPointNode, HierarchyNode} from "d3-hierarchy";
 import {Observable} from "rxjs";
 
 @Component({
-  selector: 'd3-circle-packing',
-  templateUrl: './d3-circle-packing.component.html',
-  styleUrls: ['./d3-circle-packing.component.css'],
+  selector: 'd3-circle-packing-renderer',
+  templateUrl: './d3-circle-packing-renderer.component.html',
+  styleUrls: ['./d3-circle-packing-renderer.component.css'],
 })
-export class D3CirclePackingComponent implements OnInit, OnDestroy {
+export class D3CirclePackingRendererComponent implements OnInit, OnDestroy {
 
   private d3: D3;
   private parentNativeElement: any;

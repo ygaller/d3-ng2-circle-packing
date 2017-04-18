@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { D3CirclePackingComponent } from './d3-circle-packing.component';
+import { D3CirclePackingRendererComponent } from './d3-circle-packing-renderer.component';
 import {BaseRequestOptions, Http, XHRBackend} from "@angular/http";
 import {MockBackend} from "@angular/http/testing";
 import {D3Service} from "d3-ng2-service";
 
 describe('D3CirclePackingComponent', () => {
-  let component: D3CirclePackingComponent;
-  let fixture: ComponentFixture<D3CirclePackingComponent>;
+  let component: D3CirclePackingRendererComponent;
+  let fixture: ComponentFixture<D3CirclePackingRendererComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,13 +24,13 @@ describe('D3CirclePackingComponent', () => {
             }
         },
       ],
-      declarations: [ D3CirclePackingComponent ]
+      declarations: [ D3CirclePackingRendererComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(D3CirclePackingComponent);
+    fixture = TestBed.createComponent(D3CirclePackingRendererComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -39,10 +39,4 @@ describe('D3CirclePackingComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(D3CirclePackingComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Circle-Packing');
-  }));
 });

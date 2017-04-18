@@ -1,7 +1,5 @@
-import { TestBed, async } from '@angular/core/testing';
-
-import { AppComponent } from './app.component';
-import {D3CirclePackingComponent} from "./d3-circle-packing/components/d3-circle-packing/d3-circle-packing.component";
+import {TestBed, async} from "@angular/core/testing";
+import {AppComponent} from "./app.component";
 import {Http, BaseRequestOptions, XHRBackend} from "@angular/http";
 import {MockBackend} from "@angular/http/testing";
 import {D3Service} from "d3-ng2-service";
@@ -24,7 +22,6 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        D3CirclePackingComponent,
       ],
     }).compileComponents();
   }));

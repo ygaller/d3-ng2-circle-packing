@@ -1,0 +1,9 @@
+/deep/ text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+/deep/ .node--hover circle {
+  stroke: #000;
+  stroke-width: 1.2px;
+}

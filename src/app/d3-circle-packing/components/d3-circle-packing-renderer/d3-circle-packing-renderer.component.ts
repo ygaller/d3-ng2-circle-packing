@@ -55,12 +55,7 @@ export class D3CirclePackingRendererComponent implements OnInit, OnDestroy {
       .padding(3);
 
     const processData = function (root: HierarchyNode<any>) {
-      console.log('root');
-      console.log(root);
-
       pack(root);
-      console.log('after pack');
-      console.log(root);
 
       const node = d3Svg.select<SVGGElement>("g")
         .selectAll("g")
@@ -78,7 +73,6 @@ export class D3CirclePackingRendererComponent implements OnInit, OnDestroy {
         .attr("id", d => {
           return "node-" + d.data.name;
         })
-        // .attr("id", d => "node-" + d.id)
         .attr("r", d => (<any>d).r)
         .style("fill", d => color(d.depth));
 

@@ -1,12 +1,16 @@
-<div>
+<div class="widget">
   <h2>All in one component</h2>
   <d3-circle-packing-all-in-one></d3-circle-packing-all-in-one>
 </div>
 <div class="widget">
-  <h2>Renderer with CSV data source</h2>
+  <h2>Service & component with CSV data source</h2>
   <d3-circle-packing-renderer [root]="flareCsvService.root"></d3-circle-packing-renderer>
 </div>
 <div class="widget">
-  <h2>Renderer with JSON data source</h2>
+  <h2>Service & component with JSON data source</h2>
   <d3-circle-packing-renderer [root]="flareJsonService.root"></d3-circle-packing-renderer>
+</div>
+<div class="widget">
+  <h2>Redux</h2>
+  <d3-circle-packing-redux [field]="'flareData'"></d3-circle-packing-redux>
 </div>

@@ -1,6 +1,6 @@
 {
   "name": "ng2-d3-circle-packing",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -12,6 +12,9 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/form": "^6.1.1",
+    "@angular-redux/router": "^6.1.0",
+    "@angular-redux/store": "^6.1.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
@@ -22,6 +25,9 @@
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
     "d3-ng2-service": "^1.8.0",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.1",
+    "redux-observable": "^0.14.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
@@ -32,6 +38,7 @@
     "@types/geodesy": "^1.1.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.68",
+    "@types/redux-logger": "^3.0.0",
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",

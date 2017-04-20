@@ -1,7 +1,7 @@
-import {Injectable, OnInit} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
-import 'rxjs/add/operator/map';
+import "rxjs/add/operator/map";
 import {HierarchyPointNode, HierarchyNode} from "d3-hierarchy";
 import {D3Service, D3} from "d3-ng2-service";
 import {HierarchicalData} from "./d3-hierarchical-data.type";

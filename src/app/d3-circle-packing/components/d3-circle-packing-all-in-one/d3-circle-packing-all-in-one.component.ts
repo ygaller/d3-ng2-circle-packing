@@ -11,7 +11,7 @@ import {Http} from "@angular/http";
 })
 export class D3CirclePackingAllInOneComponent implements OnInit, OnDestroy {
 
-  private csvUrl: string = "./assets/flare.csv";
+  @Input() url: string;
   private d3: D3;
   private parentNativeElement: any;
   private d3Svg: Selection<SVGSVGElement, any, null, undefined>;
@@ -102,7 +102,7 @@ export class D3CirclePackingAllInOneComponent implements OnInit, OnDestroy {
         .text(d => d.data.name + "\n" + format(d.value));
     };
 
-    this.http.get(this.csvUrl).map(res => {
+    this.http.get('./assets/' + this.url).map(res => {
       const rawData = res['_body'] || '';
       const data = this.d3.csvParse(rawData);
 

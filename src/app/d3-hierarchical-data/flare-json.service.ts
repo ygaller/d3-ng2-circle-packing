@@ -8,7 +8,7 @@ import {HierarchicalData} from "./d3-hierarchical-data.type";
 @Injectable()
 export class FlareJsonService implements HierarchicalData {
 
-  private jsonUrl: string = "./assets/flare.json";
+  private url: string = "flare.json";
   private d3: D3;
 
   public root: Observable<HierarchyNode<any>>;
@@ -16,7 +16,7 @@ export class FlareJsonService implements HierarchicalData {
   constructor(private http: Http, d3Service: D3Service) {
     this.d3 = d3Service.getD3();
 
-    this.root = this.http.get(this.jsonUrl).map(res => {
+    this.root = this.http.get('./assets/' + this.url).map(res => {
       const rawData = res['_body'] || '';
       let parsedJson = JSON.parse(rawData);
       return this.d3.hierarchy(parsedJson)

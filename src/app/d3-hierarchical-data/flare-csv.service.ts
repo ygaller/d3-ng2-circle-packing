@@ -9,7 +9,7 @@ import {HierarchicalData} from "./d3-hierarchical-data.type";
 @Injectable()
 export class FlareCsvService implements HierarchicalData {
 
-  private csvUrl: string = "./assets/flare.csv";
+  private url: string = "flare.csv";
   private d3: D3;
   private stratify;
 
@@ -21,7 +21,7 @@ export class FlareCsvService implements HierarchicalData {
       .id((d: HierarchyPointNode<any>) => (<any>d).name)
       .parentId((d: HierarchyPointNode<any>) => (<any>d).name.substring(0, (<any>d).name.lastIndexOf(".")));
 
-    this.root = this.http.get(this.csvUrl).map(res => {
+    this.root = this.http.get('./assets/' + this.url).map(res => {
       const rawData = res['_body'] || '';
       const data = this.d3.csvParse(rawData);
 

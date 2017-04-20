@@ -11,7 +11,7 @@ import {HierarchicalDataActions} from "./d3-hierarchical-data.actions";
 @Injectable()
 export class FlareCsvReduxService {
 
-  private csvUrl: string = "./assets/flare.csv";
+  private url: string = "flare.csv";
   private d3: D3;
   private stratify;
 
@@ -22,8 +22,7 @@ export class FlareCsvReduxService {
       .parentId((d: HierarchyPointNode<any>) => (<any>d).name.substring(0, (<any>d).name.lastIndexOf(".")));
 
     store.dispatch(actions.loadStarted());
-    this.http.get(this.csvUrl).map(res => {
-      console.log(res);
+    this.http.get('./assets/' + this.url).map(res => {
       const rawData = res['_body'] || '';
       const data = this.d3.csvParse(rawData);
 
@@ -33,7 +32,6 @@ export class FlareCsvReduxService {
 
       return res;
     }).subscribe(res => {
-      console.log(res);
     });
   }
 }

@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {D3, D3Service} from "d3-ng2-service";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
@@ -8,12 +8,11 @@ import {HierarchicalData} from "./d3-hierarchical-data.type";
 @Injectable()
 export class FlareJsonService implements HierarchicalData {
 
-  private url: string = "flare.json";
   private d3: D3;
 
   public root: Observable<HierarchyNode<any>>;
 
-  constructor(private http: Http, d3Service: D3Service) {
+  constructor(private http: Http, d3Service: D3Service, private url: string) {
     this.d3 = d3Service.getD3();
 
     this.root = this.http.get('./assets/' + this.url).map(res => {

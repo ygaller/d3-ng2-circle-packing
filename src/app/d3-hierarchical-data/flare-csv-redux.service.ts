@@ -11,11 +11,10 @@ import {HierarchicalDataActions} from "./d3-hierarchical-data.actions";
 @Injectable()
 export class FlareCsvReduxService {
 
-  private url: string = "flare.csv";
   private d3: D3;
   private stratify;
 
-  constructor(private http: Http, d3Service: D3Service, store: NgRedux<IAppState>, actions: HierarchicalDataActions) {
+  constructor(private http: Http, d3Service: D3Service, store: NgRedux<IAppState>, actions: HierarchicalDataActions, private url: string) {
     this.d3 = d3Service.getD3();
     this.stratify = this.d3.stratify()
       .id((d: HierarchyPointNode<any>) => (<any>d).name)

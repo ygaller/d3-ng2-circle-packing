@@ -1,4 +1,4 @@
-# D3Ng2CirclePacking
+# D3, Angular and Redux Circle Packing Demo
 
 A port of [D3 Circle Packing](https://bl.ocks.org/mbostock/ca5b03a33affa4160321) 
 to Angular 2 based on https://github.com/tomwanzek/d3-ng2-demo 
@@ -6,7 +6,14 @@ and https://github.com/tomwanzek/d3-ng2-service.
 
 The D3 circle packing component is given a root node as input, in the [hierarchy](https://github.com/d3/d3-hierarchy/blob/master/README.md#hierarchy) format. 
 
-The data itself is provided by a separate service. In this project there are 2 examples: In csv format and in json format (json taken from [https://bl.ocks.org/mbostock/7607535](https://bl.ocks.org/mbostock/7607535)).
+The data itself is provided by a separate service. The project has two data sets: In csv format and in json format (json taken from [https://bl.ocks.org/mbostock/7607535](https://bl.ocks.org/mbostock/7607535)).
+
+The generated Angular page shows four variations on the display of D3's circle packing visualization. The differences in implementation are:
+
+1. An all-in-one component which reads csv data, processed it and renders the visualization
+2. A data service and a rendering component, using a csv data source
+3. A data service and a rendering component, using a json data source
+4. A data service and a rendering component with a common Redux data store used for communicating between the two
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 

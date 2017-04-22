@@ -1,4 +1,4 @@
-# D3Ng2CirclePacking
+# D3, Angular and Redux Circle Packing Demo
 
 A port of [D3 Circle Packing](https://bl.ocks.org/mbostock/ca5b03a33affa4160321) 
 to Angular 2 based on https://github.com/tomwanzek/d3-ng2-demo 

@@ -20,8 +20,13 @@ const FLARE_JSON = 'flare.json';
   ],
 })
 export class AppComponent {
+  public csvRoot;
+  public jsonRoot;
+
   constructor(private flareCsvService: FlareCsvService,
               private flareJsonService: FlareJsonService,
               private flareCsvReduxService: FlareCsvReduxService) {
+    this.csvRoot = flareCsvService.getRoot();
+    this.jsonRoot = flareJsonService.getRoot();
   }
 }

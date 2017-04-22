@@ -54,7 +54,7 @@ export class D3CirclePackingReduxComponent implements OnInit, OnDestroy {
 
     const format = d3.format(",d");
 
-    const color: (number) => string = d3.scaleSequential(d3.interpolateMagma).domain([-4, 4]);
+    const color: (number) => string = d3.scaleSequential(d3.interpolateCubehelixDefault).domain([-4, 4]);
 
     const pack = d3.pack()
       .size([svgWidth - 2, svgHeight - 2])

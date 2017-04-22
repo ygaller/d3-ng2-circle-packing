@@ -10,12 +10,12 @@ export class FlareJsonService implements HierarchicalData {
 
   private d3: D3;
 
-  public root: Observable<HierarchyNode<any>>;
-
   constructor(private http: Http, d3Service: D3Service, private url: string) {
     this.d3 = d3Service.getD3();
+  }
 
-    this.root = this.http.get('./assets/' + this.url).map(res => {
+  getRoot(): Observable<HierarchyNode<any>> {
+    return this.http.get('./assets/' + this.url).map(res => {
       const rawData = res['_body'] || '';
       let parsedJson = JSON.parse(rawData);
       return this.d3.hierarchy(parsedJson)
